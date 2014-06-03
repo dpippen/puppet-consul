@@ -29,6 +29,18 @@ class { 'consul':
 }
 ```
 
+###Redhat
+````puppet
+class { 'consul':
+  service_hasstatus   => false,
+  service_hasrestart  => false,
+  service_restart     => '/sbin/initctl restart consul',
+  service_start       => '/sbin/initctl start   consul',
+  service_status      => '/sbin/initctl status  consul',
+  service_stop        => '/sbin/initctl stop    consul',
+  }
+```
+
 ##Limitations
 
 This module requires upstart to manage the service. Patches welcome! (with tests)

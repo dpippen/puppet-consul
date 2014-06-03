@@ -6,8 +6,14 @@
 class consul::service {
 
   service { 'consul':
-    ensure     => $consul::service_ensure,
-    enable     => $consul::service_enable,
+    ensure      => $consul::service_ensure,
+    enable      => $consul::service_enable,
+    hasrestart  => $consul::service_hasrestart,
+    hasstatus   => $consul::service_hasstatus,
+    restart     => $consul::service_restart,
+    start       => $consul::service_start,
+    status      => $consul::service_status,
+    stop        => $consul::service_stop,
   }
 
 }
