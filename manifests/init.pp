@@ -20,19 +20,24 @@
 #   Only valid when the install_method == package. Defaults to `present`.
 #
 class consul (
-  $manage_user    = true,
-  $user           = 'consul',
-  $bin_dir        = '/usr/local/bin',
-  $arch           = $consul::params::arch,
-  $version        = $consul::params::version,
-  $install_method = $consul::params::install_method,
-  $download_url   = "https://dl.bintray.com/mitchellh/consul/${version}_linux_${arch}.zip",
-  $package_name   = $consul::params::package_name,
-  $package_ensure = $consul::params::package_ensure,
-  $config_dir     = '/etc/consul',
-  $config_hash    = {},
-  $service_enable = true,
-  $service_ensure = 'running',
+  $manage_user        = true,
+  $user               = 'consul',
+  $bin_dir            = '/usr/local/bin',
+  $arch               = $consul::params::arch,
+  $version            = $consul::params::version,
+  $install_method     = $consul::params::install_method,
+  $download_url       = "https://dl.bintray.com/mitchellh/consul/${version}_linux_${arch}.zip",
+  $package_name       = $consul::params::package_name,
+  $package_ensure     = $consul::params::package_ensure,
+  $config_dir         = '/etc/consul',
+  $config_hash        = {},
+  $service_enable     = true,
+  $service_ensure     = 'running',
+  $service_hasrestart = false,
+  $service_hasstatus  = true,
+  $service_restart    = undef,
+  $service_start      = undef,
+  $service_stop       = undef,
 ) inherits consul::params {
 
   validate_bool($manage_user)
