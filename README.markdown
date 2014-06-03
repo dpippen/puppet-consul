@@ -31,14 +31,26 @@ class { 'consul':
 
 ###Redhat
 ````puppet
+file { '/opt/consul/':
+  ensure => 'directory',
+  owner  => 'consul',
+  group  => 'root',
+} ->
 class { 'consul':
+  config_hash         => {
+    'datacenter'      => 'east-aws',
+    'data_dir'        => '/opt/consul',
+    'log_level'       => 'INFO',
+    'node_name'       => 'foobar',
+    'server'          => true,
+  },
   service_hasstatus   => false,
   service_hasrestart  => false,
   service_restart     => '/sbin/initctl restart consul',
   service_start       => '/sbin/initctl start   consul',
-  service_status      => '/sbin/initctl status  consul',
+  service_status      => '/sbin/initctl status  consul | grep /running',
   service_stop        => '/sbin/initctl stop    consul',
-  }
+}
 ```
 
 ##Limitations
